@@ -5,7 +5,7 @@ import domonx.game.core.controller.NeController;
 public class NeVisualEntity extends NeScalableEntity{
 	
 	protected String srcPath;
-		
+	
 	public NeVisualEntity() {
 		super();
 	}
@@ -16,7 +16,12 @@ public class NeVisualEntity extends NeScalableEntity{
 	
 	public void load(String srcPath) {
 		this.srcPath = srcPath;
+		cache();
 		reload();
 	}
+	
+	protected void cache() {}
+	
+	protected void casheSize() {}
 
 }

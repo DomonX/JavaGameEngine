@@ -16,21 +16,46 @@ public class NeScalableEntity extends NeBaseEntity {
 	protected boolean valid;
 
 	protected double scale = 1;	
+	
+	protected int cachedWidth = 0;
+	protected int cachedHeight = 0;
 
 	public void setScale(double scale) {
-//		this.scale = scale;
-//		rescale();
+		if(scale < 0.001) {
+			return;
+		}
+		this.scale = scale;
+		this.width = (int) (cachedWidth * scale);
+		this.height = (int) (cachedHeight * scale);
+		reload();
+	}
+	
+	public double getScale() {
+		return scale;
+	}
+	
+	public int getWidth() {
+		return (int) (cachedWidth * scale);
+	}
+	public int getHeight() {
+		return (int) (cachedHeight * scale);
+	}
+	public int getCachedWidth() {
+		return cachedWidth;
+	}
+	public int getCachedHeight() {
+		return cachedHeight;
 	}
 	
 	protected void reload() {}
 	
 	protected void rescale() {}
-
+	
 	protected Image getScaledImage(Image source, int width, int height) {
-//		if (scale == 1) {
-//			return source;
-//		}
-//		return source.getScaledInstance((int) (width * scale), (int) (height * scale), Image.SCALE_SMOOTH);
+		if (scale == 1) {
+			return source;
+		}
+		return source.getScaledInstance((int) (width * scale), (int) (height * scale), Image.SCALE_SMOOTH);
 	}
 	
 	protected Image getScaledImage(Image source) {

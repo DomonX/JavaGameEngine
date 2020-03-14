@@ -42,17 +42,7 @@ public class NeBaseEntity implements NeEntity {
 		yPos = y;
 	}
 	
-	@Override
-	public int getNativeWidth() {
-		return width;
-	}
-	
-	@Override
-	public int getNativeHeight() {
-		return height;
-	}
-	
 	public boolean isPointInside(int xPos, int yPos) {
-		return this.xPos <= xPos && this.xPos + this.width >= xPos && this.yPos <= yPos && this.yPos + this.height >= yPos;
+		return this.xPos <= xPos && this.xPos + getWidth() >= xPos && this.yPos <= yPos && this.yPos + getHeight() >= yPos;
 	}
 }

@@ -9,32 +9,41 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import domonx.game.core.controller.NeController;
-import domonx.game.core.entity.NeScalableEntity;
 import domonx.game.core.entity.NeVisualEntity;
 
 public class NeImage extends NeVisualEntity {
+	private Image frame;	
+	private Image cashedFrame;
+	
 	public NeImage(NeController controller) {
 		super(controller);
 	}
 
 	public NeImage() {}
-	
-	private Image frame;
-	
+
 	protected void reload() {
- 		if(srcPath == null) {
+		if(!valid) {
 			return;
 		}
-		try {
-			this.frame = getScaledImage(ImageIO.read(new File(srcPath)));
-			this.width = frame.getWidth(null);
-			this.height = frame.getHeight(null);
-		} catch (IOException e) {
-			this.frame = null;
-		}
+		this.frame = getScaledImage(cashedFrame);
 	}
 	
+	protected void cache() {
+		try {
+			cashedFrame = ImageIO.read(new File(srcPath));
+			cachedWidth = cashedFrame.getWidth(null);
+			cachedHeight = cashedFrame.getHeight(null);
+			valid = true;
+		} catch (IOException e) {
+			cashedFrame = null;
+			valid = false;
+		}
+	}
+
 	public void draw(Graphics g, ImageObserver observer) {
+		if(!valid) {
+			return;
+		}
 		g.drawImage(frame, xPos, yPos, observer);
 	}
 }

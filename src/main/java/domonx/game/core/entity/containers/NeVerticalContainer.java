@@ -1,23 +1,20 @@
 package domonx.game.core.entity.containers;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
 import domonx.game.core.controller.NeController;
 import domonx.game.core.entity.NeBaseEntity;
-import domonx.game.core.entity.NeScalableEntity;
+import domonx.game.core.entity.NeVisualEntity;
 
 public class NeVerticalContainer extends NeBaseEntity {
 
-	private Image background;
 	private int margin = 0;
 
 	private int currentIndent = 0;
-	
-	private boolean waitsForReload = false;
-	protected ArrayList<NeScalableEntity> content = new ArrayList<NeScalableEntity>();
+
+	protected ArrayList<NeVisualEntity> content = new ArrayList<NeVisualEntity>();
 	protected int indent = 10;
 
 	public NeVerticalContainer() {
@@ -31,7 +28,7 @@ public class NeVerticalContainer extends NeBaseEntity {
 		indent = newIndent;
 		reload();
 	}
-	
+
 	public int getIndent() {
 		return indent;
 	}
@@ -40,7 +37,7 @@ public class NeVerticalContainer extends NeBaseEntity {
 		this.width = width;
 		reload();
 	}
-	
+
 	public int getWidth() {
 		return width;
 	}
@@ -48,30 +45,30 @@ public class NeVerticalContainer extends NeBaseEntity {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
 	public int getHeight() {
 		return height;
 	}
-	
+
 	public void setMargin(int margin) {
 		this.margin = margin;
 		reload();
 	}
-	
+
 	public int getMargin() {
 		return margin;
 	}
 
 	public void draw(Graphics g, ImageObserver observer) {
 		content.forEach(item -> {
-			item.move(xPos, yPos + currentIndent);
+			item.move(xPos + margin, yPos + currentIndent + margin);
 			item.draw(g, observer);
 			currentIndent += indent;
 		});
 		currentIndent = 0;
 	}
 
-	public void addItem(NeScalableEntity newItem) {
+	public void addItem(NeVisualEntity newItem) {
 		content.add(loadItem(newItem));
 	}
 
@@ -81,9 +78,9 @@ public class NeVerticalContainer extends NeBaseEntity {
 		});
 	}
 
-	private NeScalableEntity loadItem(NeScalableEntity item) {
-		int width = item.getWidth();
-		double scale = (double) this.width / width;
+	private NeVisualEntity loadItem(NeVisualEntity item) {
+		int width = item.getCachedWidth();
+		double scale = (double) (this.width - 2 * margin) / width;
 		item.setScale(scale);
 		return item;
 	}

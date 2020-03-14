@@ -10,7 +10,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import domonx.game.core.controller.NeController;
-import domonx.game.core.entity.NeScalableEntity;
 import domonx.game.core.entity.NeVisualEntity;
 
 public class NeAnimation extends NeVisualEntity {

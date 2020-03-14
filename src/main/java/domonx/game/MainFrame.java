@@ -21,9 +21,9 @@ public class MainFrame extends NeSyncFrame {
 		panel.repaint();
 	}
 
-	protected void updateGame() {
-		super.updateGame();
-		panel.updateGame();
+	protected void updateGame(int hertzPassed) {
+		super.updateGame(hertzPassed);
+		panel.updateGame(hertzPassed);
 	}
 
 	public void keyPressed(KeyEvent e) {

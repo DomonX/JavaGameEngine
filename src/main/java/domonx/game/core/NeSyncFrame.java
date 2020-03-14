@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 public class NeSyncFrame extends JFrame implements KeyListener {
 	private static final long serialVersionUID = 8590211693728083963L;
 	private long TARGET_FPS = 75;
-	private long TARGET_HERTZ = 60;
+	private long TARGET_HERTZ = 30;
 	private final int NANO_SECOND = 1000000000;
 	private long FPS_UPDATE_TIME = NANO_SECOND / TARGET_FPS;
 	private long HERTZ_UPDATE_TIME = NANO_SECOND / TARGET_HERTZ;
@@ -43,23 +43,24 @@ public class NeSyncFrame extends JFrame implements KeyListener {
 	private void mainLoop() {
 		if (currentNanoTimeFps > FPS_UPDATE_TIME) {
 			updateScreen();
-			currentNanoTimeFps = 0;
+			currentNanoTimeFps -= FPS_UPDATE_TIME;
 			currentFps++;
 		}
 		if (currentNanoTimeHertz > HERTZ_UPDATE_TIME) {
-			updateGame();
-			currentNanoTimeHertz = 0;
+			int fullHertzPassed = (int) (currentNanoTimeHertz / HERTZ_UPDATE_TIME);
+			updateGame(fullHertzPassed);
+			currentNanoTimeHertz -= fullHertzPassed * HERTZ_UPDATE_TIME;
 		}
 		if (currentNanoTimeCounter > NANO_SECOND) {
 			lastFps = currentFps;
-			currentNanoTimeCounter = 0;
+			currentNanoTimeCounter -= NANO_SECOND;
 			currentFps = 0;
 		}
 	}
 
 	protected void updateScreen() {}
 
-	protected void updateGame() {}
+	protected void updateGame(int hertzPassed) {}
 
 	public void changeTargetFps(long newFps) {
 		if (newFps < 1) {
