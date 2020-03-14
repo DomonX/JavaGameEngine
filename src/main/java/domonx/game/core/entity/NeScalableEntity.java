@@ -16,17 +16,10 @@ public class NeScalableEntity extends NeBaseEntity {
 	protected boolean valid;
 
 	protected double scale = 1;	
-	
-	protected String srcPath;
 
 	public void setScale(double scale) {
-		this.scale = scale;
-		rescale();
-	}
-	
-	public void load(String srcPath) {
-		this.srcPath = srcPath;
-		reload();
+//		this.scale = scale;
+//		rescale();
 	}
 	
 	protected void reload() {}
@@ -34,10 +27,10 @@ public class NeScalableEntity extends NeBaseEntity {
 	protected void rescale() {}
 
 	protected Image getScaledImage(Image source, int width, int height) {
-		if (scale == 1) {
-			return source;
-		}
-		return source.getScaledInstance((int) (width * scale), (int) (height * scale), Image.SCALE_SMOOTH);
+//		if (scale == 1) {
+//			return source;
+//		}
+//		return source.getScaledInstance((int) (width * scale), (int) (height * scale), Image.SCALE_SMOOTH);
 	}
 	
 	protected Image getScaledImage(Image source) {
