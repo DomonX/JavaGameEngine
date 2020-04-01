@@ -1,0 +1,7 @@
+domonx.game
+domonx.game.core
+domonx.game.core.controller
+domonx.game.core.entity
+domonx.game.core.entity.animation
+domonx.game.core.entity.containers
+domonx.game.core.entity.image

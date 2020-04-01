@@ -1,7 +1,5 @@
 package domonx.game;
 
-import java.awt.event.KeyEvent;
-
 import domonx.game.core.NeSyncFrame;
 
 public class MainFrame extends NeSyncFrame {
@@ -24,10 +22,6 @@ public class MainFrame extends NeSyncFrame {
 	protected void updateGame(int hertzPassed) {
 		super.updateGame(hertzPassed);
 		panel.updateGame(hertzPassed);
-	}
-
-	public void keyPressed(KeyEvent e) {
-		super.keyPressed(e);
 	}
 
 }

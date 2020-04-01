@@ -10,12 +10,12 @@ import domonx.game.core.entity.NeVisualEntity;
 
 public class NeVerticalContainer extends NeBaseEntity {
 
-	private int margin = 0;
-
-	private int currentIndent = 0;
-
 	protected ArrayList<NeVisualEntity> content = new ArrayList<NeVisualEntity>();
 	protected int indent = 10;
+
+	private int margin = 0;
+	private int currentIndent = 0;
+
 
 	public NeVerticalContainer() {
 	}
@@ -69,7 +69,18 @@ public class NeVerticalContainer extends NeBaseEntity {
 	}
 
 	public void addItem(NeVisualEntity newItem) {
+		if(content.contains(newItem)) {
+			return;
+		}
 		content.add(loadItem(newItem));
+	}
+	
+	public void removeItem(int index) {
+		content.remove(index);
+	}
+	
+	public int getSize() {
+		return content.size();
 	}
 
 	public void reload() {

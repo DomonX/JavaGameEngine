@@ -1,8 +1,9 @@
 package domonx.game.core.entity;
 
+
 import domonx.game.core.controller.NeController;
 
-public class NeBaseEntity implements NeEntity {
+public abstract class NeBaseEntity implements NeEntity {
 	NeController controller;
 	
 	protected NeBaseEntity(NeController controller) {

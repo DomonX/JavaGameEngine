@@ -6,7 +6,7 @@ import java.awt.image.ImageObserver;
 
 import domonx.game.core.controller.NeController;
 
-public class NeScalableEntity extends NeBaseEntity {
+public abstract class NeScalableEntity extends NeBaseEntity {
 
 	public NeScalableEntity(NeController controller) {
 		super(controller);

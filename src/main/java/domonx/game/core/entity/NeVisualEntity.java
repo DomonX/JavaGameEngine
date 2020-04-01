@@ -1,8 +1,9 @@
 package domonx.game.core.entity;
 
+import domonx.game.core.NeFrameConfiguration;
 import domonx.game.core.controller.NeController;
 
-public class NeVisualEntity extends NeScalableEntity{
+public abstract class NeVisualEntity extends NeScalableEntity{
 	
 	protected String srcPath;
 	
@@ -15,13 +16,13 @@ public class NeVisualEntity extends NeScalableEntity{
 	}
 	
 	public void load(String srcPath) {
-		this.srcPath = srcPath;
+		this.srcPath = NeFrameConfiguration.getPath() + "/" + srcPath;
 		cache();
 		reload();
 	}
 	
 	protected void cache() {}
 	
-	protected void casheSize() {}
+	protected void cacheSize() {}
 
 }

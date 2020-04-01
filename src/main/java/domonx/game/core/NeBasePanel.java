@@ -8,13 +8,10 @@ import javax.swing.JPanel;
 
 
 public class NeBasePanel extends JPanel {
-	private static final long serialVersionUID = -2013484543573015813L;
-	
-	Font baseFont = new Font(Font.SERIF, Font.PLAIN, 20);
-
-	NeSyncFrame owner;
-
+	private Font baseFont = new Font(Font.SERIF, Font.PLAIN, 20);
+	private NeSyncFrame owner;
 	private boolean showFps = false;
+	private static final long serialVersionUID = -2013484543573015813L;	
 
 	protected void paintContent(Graphics g) {}
 	public void updateGame() {}
@@ -39,9 +36,11 @@ public class NeBasePanel extends JPanel {
 	}
 
 	protected void paintFps(Graphics g) {
+		Color oldColor = g.getColor();
 		g.setColor(Color.BLACK);
 		g.setFont(baseFont);
 		g.drawString(Integer.toString(owner.lastFps), 0, baseFont.getSize());
+		g.setColor(oldColor);
 	}	
 
 }
