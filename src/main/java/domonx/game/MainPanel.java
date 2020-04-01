@@ -23,9 +23,8 @@ public class MainPanel extends NeBasePanel implements KeyListener {
 		owner.addKeyListener(this);
 		NeDraggableController c = new NeDraggableController(owner);
 		container = new NeVerticalContainer(c);
-		container.setMargin(0);
-		container.setWidth(200);
-		container.setHeight(300);
+		container.load("src/1.png");
+		container.setMargin(4);
 		container.setIndent(50);
 		container.move(300, 300);
 		NeDraggableController c2 = new NeDraggableController(owner);

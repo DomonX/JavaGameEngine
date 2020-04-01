@@ -25,8 +25,7 @@ public abstract class NeScalableEntity extends NeBaseEntity {
 			return;
 		}
 		this.scale = scale;
-		this.width = (int) (cachedWidth * scale);
-		this.height = (int) (cachedHeight * scale);
+		setDynamicSize();
 		reload();
 	}
 	
@@ -34,17 +33,16 @@ public abstract class NeScalableEntity extends NeBaseEntity {
 		return scale;
 	}
 	
-	public int getWidth() {
-		return (int) (cachedWidth * scale);
-	}
-	public int getHeight() {
-		return (int) (cachedHeight * scale);
-	}
 	public int getCachedWidth() {
 		return cachedWidth;
 	}
 	public int getCachedHeight() {
 		return cachedHeight;
+	}
+	
+	protected void setDynamicSize() {
+		this.width = (int) (cachedWidth * scale);
+		this.height = (int) (cachedHeight * scale);
 	}
 	
 	protected void reload() {}

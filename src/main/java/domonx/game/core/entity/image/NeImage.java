@@ -35,6 +35,7 @@ public class NeImage extends NeVisualEntity {
 			cachedHeight = cashedFrame.getHeight(null);
 			valid = true;
 		} catch (IOException e) {
+			System.out.println("Couldnt load image");
 			cashedFrame = null;
 			valid = false;
 		}

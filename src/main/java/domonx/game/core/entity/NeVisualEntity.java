@@ -18,6 +18,7 @@ public abstract class NeVisualEntity extends NeScalableEntity{
 	public void load(String srcPath) {
 		this.srcPath = NeFrameConfiguration.getPath() + "/" + srcPath;
 		cache();
+		setDynamicSize();
 		reload();
 	}
 	

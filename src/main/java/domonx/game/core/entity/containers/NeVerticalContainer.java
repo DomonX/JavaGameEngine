@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import domonx.game.core.controller.NeController;
 import domonx.game.core.entity.NeBaseEntity;
 import domonx.game.core.entity.NeVisualEntity;
+import domonx.game.core.entity.image.NeImage;
 
-public class NeVerticalContainer extends NeBaseEntity {
+public class NeVerticalContainer extends NeImage {
 
 	protected ArrayList<NeVisualEntity> content = new ArrayList<NeVisualEntity>();
 	protected int indent = 10;
 
 	private int margin = 0;
 	private int currentIndent = 0;
-
 
 	public NeVerticalContainer() {
 	}
@@ -38,16 +38,8 @@ public class NeVerticalContainer extends NeBaseEntity {
 		reload();
 	}
 
-	public int getWidth() {
-		return width;
-	}
-
 	public void setHeight(int height) {
 		this.height = height;
-	}
-
-	public int getHeight() {
-		return height;
 	}
 
 	public void setMargin(int margin) {
@@ -60,6 +52,7 @@ public class NeVerticalContainer extends NeBaseEntity {
 	}
 
 	public void draw(Graphics g, ImageObserver observer) {
+		super.draw(g, observer);
 		content.forEach(item -> {
 			item.move(xPos + margin, yPos + currentIndent + margin);
 			item.draw(g, observer);
@@ -84,6 +77,7 @@ public class NeVerticalContainer extends NeBaseEntity {
 	}
 
 	public void reload() {
+		super.reload();
 		content.forEach(item -> {
 			item = loadItem(item);
 		});

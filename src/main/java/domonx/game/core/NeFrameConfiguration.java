@@ -13,7 +13,7 @@ public class NeFrameConfiguration {
 	private static long hertzTime;	
 	private static boolean isFullScreen;	
 	private static Dimension screenResolution;	
-	private static final String installPath = "E:\\Programowanie\\Java\\Eclipse\\game";
+	private static final String installPath = "E:\\Programowanie\\Java\\Eclipse\\game\\JavaGameEngine";
 	
 	public static long getHertz() {
 		return hertz;
