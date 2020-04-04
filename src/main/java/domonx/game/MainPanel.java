@@ -26,6 +26,7 @@ public class MainPanel extends NeBasePanel implements KeyListener {
 	private NeVerticalContainer<NeImage, NeImage> container2;
 	private NeVerticalContainer<NeImage, NeImage> container3;
 	private NeHorizontalContainer<NeImage, NeImage> hand;
+	NeHorizontalContainer<NeImage, NeVerticalContainer<NeImage, NeImage>> cMain;
 	
 	MainPanel(NeSyncFrame owner) {
 		super(owner);
@@ -62,6 +63,10 @@ public class MainPanel extends NeBasePanel implements KeyListener {
 		container3.setMargin(4);
 		container3.setIndent(20);
 		container3.move(405, 300);
+		
+		cMain.addItem(container);
+		cMain.addItem(container2);
+		cMain.addItem(container3);		
 		
 		NeHorizontalContainerController c4 = new NeHorizontalContainerController(owner);
 		hand = new NeHorizontalContainer<NeImage, NeImage>(new NeImage(), c4);
