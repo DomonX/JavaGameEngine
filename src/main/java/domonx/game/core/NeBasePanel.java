@@ -9,11 +9,12 @@ import javax.swing.JPanel;
 
 public class NeBasePanel extends JPanel {
 	private Font baseFont = new Font(Font.SERIF, Font.PLAIN, 20);
-	private NeSyncFrame owner;
 	private boolean showFps = false;
 	private static final long serialVersionUID = -2013484543573015813L;	
 
+	protected NeSyncFrame owner;
 	protected void paintContent(Graphics g) {}
+	
 	public void updateGame() {}
 	
 	public NeBasePanel(NeSyncFrame owner) {

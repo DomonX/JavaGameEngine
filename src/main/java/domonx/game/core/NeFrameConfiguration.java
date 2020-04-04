@@ -14,6 +14,7 @@ public class NeFrameConfiguration {
 	private static boolean isFullScreen;	
 	private static Dimension screenResolution;	
 	private static final String installPath = "E:\\Programowanie\\Java\\Eclipse\\game\\JavaGameEngine";
+	private static final boolean developerMode = true;
 	
 	public static long getHertz() {
 		return hertz;
@@ -85,10 +86,14 @@ public class NeFrameConfiguration {
 		screenResolution = Toolkit.getDefaultToolkit().getScreenSize();
 	}
 	
+	public static boolean isDeveloperMode() {
+		return developerMode;
+	}
+
 	static {
 		fps = 60;
 		hertz = 30;
-		isCapped = true;
+		isCapped = false;
 		setDefaultGraphics();
 		loadFpsTime();
 		loadHertzTime();

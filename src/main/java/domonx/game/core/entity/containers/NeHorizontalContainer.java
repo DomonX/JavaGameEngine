@@ -6,28 +6,24 @@ import domonx.game.core.controller.NeController;
 import domonx.game.core.entity.NeImage;
 import domonx.game.core.entity.NeVisual;
 
-public class NeVerticalContainer<
-	TBackground extends NeImage, 
-	TContent extends NeVisual
-	> extends NeIndentContainer<TBackground, TContent>{
-
-	public NeVerticalContainer(TBackground background) {
+public class NeHorizontalContainer<TBackground extends NeImage, TContent extends NeVisual>
+		extends NeIndentContainer<TBackground, TContent> {
+	public NeHorizontalContainer(TBackground background) {
 		super(background);
 	}
-	
 
-	public NeVerticalContainer(TBackground background, NeController controller) {
+	public NeHorizontalContainer(TBackground background, NeController controller) {
 		super(background, controller);
 	}
-	
+
 	protected Point getItemPosition(TContent item) {
 		Point position = super.getItemPosition(item);
-		position.y += currentIndent;
+		position.x += currentIndent;
 		return position;
 	}
-	
+
 	protected TContent reloadItem(TContent item) {
-		double scale = (double) (getWidth() - (2 * margin)) / item.getCachedWidth();
+		double scale = (double) (getHeight() - (2 * margin)) / item.getCachedHeight();
 		item.setScale(scale);
 		return item;
 	}

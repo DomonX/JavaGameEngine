@@ -19,16 +19,23 @@ public abstract class NeBaseController implements NeController {
 	@Override
 	public void connectEntity(NeEntity entity) {
 		this.entity = entity;
-		xPosOld = entity.getPosX();
-		yPosOld = entity.getPosY();
+		xPosOld = entity.getX();
+		yPosOld = entity.getY();
 	}
 
 	protected void returnOldPosition() {
-		entity.move(xPosOld, yPosOld);
+		move(xPosOld, yPosOld);
 	}
 	
 	protected boolean isMovePermitted() {
 		return true;
+	}
+	
+	public void move(int x, int y) {
+		if(!entity.isControllerActive()) {
+			return;
+		}
+		entity.move(x, y);
 	}
 
 }

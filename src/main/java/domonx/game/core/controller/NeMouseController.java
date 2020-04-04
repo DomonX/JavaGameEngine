@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 public class NeMouseController extends NeBaseController implements MouseListener, MouseMotionListener {
 
 	protected boolean clicked;
+	
+	protected boolean hovered;
 
 	protected int offsetX = 0;
 	protected int offsetY = 0;
@@ -19,10 +21,10 @@ public class NeMouseController extends NeBaseController implements MouseListener
 
 	protected void setObjectClicked(int xPos, int yPos) {
 		clicked = true;
-		xPosOld = entity.getPosX();
-		yPosOld = entity.getPosY();
-		offsetX = xPos - entity.getPosX();
-		offsetY = yPos - entity.getPosY();
+		xPosOld = entity.getX();
+		yPosOld = entity.getY();
+		offsetX = xPos - entity.getX();
+		offsetY = yPos - entity.getY();
 	}
 
 	protected void setObjectNotClicked() {

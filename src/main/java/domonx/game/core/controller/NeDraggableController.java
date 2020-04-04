@@ -4,8 +4,10 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 
+import domonx.game.core.entity.NeEntity;
 
-public class NeDraggableController extends NeMouseController {
+
+public class NeDraggableController extends NeHoverController {
 
 	public NeDraggableController(JFrame listener) {
 		super(listener);
@@ -13,18 +15,16 @@ public class NeDraggableController extends NeMouseController {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if (!this.clicked) {
+		if (!clicked) {
 			return;
 		}
-		entity.move(e.getX() - offsetX, e.getY() - offsetY);
+		move(e.getX() - offsetX, e.getY() - offsetY);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		int xPos = e.getX();
-		int yPos = e.getY();
-		if (entity.isPointInside(xPos, yPos)) {
-			setObjectClicked(xPos, yPos);
+		if(hovered) {
+			setObjectClicked(e.getX(), e.getY());
 		}
 	}
 

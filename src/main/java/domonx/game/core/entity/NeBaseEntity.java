@@ -1,49 +1,86 @@
 package domonx.game.core.entity;
 
+import java.awt.Dimension;
+import java.awt.Point;
 
 import domonx.game.core.controller.NeController;
+import domonx.game.util.NeEntityUtils;
 
 public abstract class NeBaseEntity implements NeEntity {
-	NeController controller;
-	
+
 	protected NeBaseEntity(NeController controller) {
+		this.controller = controller;
+		position = new Point();
+		size = new Dimension();
 		controller.connectEntity(this);
 	}
-	protected NeBaseEntity() {}
-	
-	protected int xPos = 0;
-	protected int yPos = 0;
-	
-	protected int width = 0;
-	protected int height = 0;	
 
-	@Override
-	public int getPosX() {
-		return xPos;
+	protected NeBaseEntity() {
+		position = new Point();
+		size = new Dimension();
+	}
+
+	protected Point position;
+	protected Dimension size;
+
+	protected NeController controller;
+	protected NeEntity owner;
+	
+	protected boolean controllerActive;
+
+	public NeEntity getOwner() {
+		return owner;
+	}
+
+	public void setOwner(NeEntity owner) {
+		this.owner = owner;
 	}
 
 	@Override
-	public int getPosY() {
-		return yPos;
+	public int getX() {
+		return position.x;
+	}
+
+	@Override
+	public int getY() {
+		return position.y;
 	}
 
 	@Override
 	public int getWidth() {
-		return width;
+		return size.width;
 	}
 
 	@Override
 	public int getHeight() {
-		return height;
+		return size.height;
 	}
-	
+
 	@Override
 	public void move(int x, int y) {
-		xPos = x;
-		yPos = y;
+		this.position.x = x;
+		this.position.y = y;
+	}
+
+	@Override
+	public boolean isPointInside(int xPos, int yPos) {
+		return NeEntityUtils.isPointInside(this, xPos, yPos);
+	}
+
+	protected void setWidth(int width) {
+		size.width = width;
+	}
+
+	protected void setHeight(int height) {
+		size.height = height;
 	}
 	
-	public boolean isPointInside(int xPos, int yPos) {
-		return this.xPos <= xPos && this.xPos + getWidth() >= xPos && this.yPos <= yPos && this.yPos + getHeight() >= yPos;
+	public boolean isControllerActive() {
+		return controllerActive;
 	}
+	
+	public void setControllerActivity(boolean activity) {
+		controllerActive = activity;
+	}
+
 }
